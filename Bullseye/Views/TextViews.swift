@@ -87,6 +87,33 @@ struct StartNewRoundTextView: View {
     }
 }
 
+struct ScoreTextView: View {
+    var score: Int
+    var body: some View {
+        Text("\(score)")
+            .font(.title3)
+            .fontWeight(.bold)
+            .kerning(-0.2)
+            .multilineTextAlignment(
+                .center)
+    }
+}
+
+struct DateTextView: View {
+    var date: Date
+    var body: some View {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd hh:mm"
+        
+        return Text("\(dateFormatter.string(from: date))")
+                .font(.title3)
+                .fontWeight(.bold)
+                .kerning(-0.2)
+                .multilineTextAlignment(
+                    .center)
+    }
+}
+
 struct TextViews_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
@@ -96,6 +123,8 @@ struct TextViews_Previews: PreviewProvider {
             NumberTitleView(title: "得分")
             PointsTextView(points: 200)
             StartNewRoundTextView()
+            ScoreTextView(score: 456)
+            DateTextView(date: Date())
         }
     }
 }

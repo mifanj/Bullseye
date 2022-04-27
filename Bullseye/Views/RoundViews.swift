@@ -13,10 +13,10 @@ struct RoundedImageViewStroked: View {
         Image(systemName: symbolName)
             .font(.title)
             .foregroundColor(Color("TextColor"))
-            .frame(width: 56.0, height: 56.0)
+            .frame(width: Constants.General.roundedViewLength, height: Constants.General.roundedViewLength)
             .overlay (
                 Circle()
-                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: 2.0)
+                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: Constants.General.strokeWidth)
             )
     }
 }
@@ -26,7 +26,7 @@ struct RoundedImageViewFilled: View {
         Image(systemName: symbolName)
             .font(.title)
             .foregroundColor(Color("ButtonFilledTextColor"))
-            .frame(width: 56.0, height: 56.0)
+            .frame(width: Constants.General.roundedViewLength, height: Constants.General.roundedViewLength)
             .background(
                 Circle()
                     .fill(Color("ButtonFilledBackgroundColor"))
@@ -42,10 +42,27 @@ struct RoundedTextViewStroked: View {
             .kerning(-0.2)
             .fontWeight(.bold)
             .foregroundColor(Color("TextColor"))
-            .frame(width: 68.0, height: 56.0)
+            .frame(width: Constants.General.roundRectViewWidth, height: Constants.General.roundRectViewHeight)
             .overlay (
-                RoundedRectangle(cornerRadius: 21.0)
-                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: 2.0)
+                RoundedRectangle(cornerRadius: Constants.General.roundRectCornerRadius)
+                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: Constants.General.strokeWidth)
+            )
+    }
+}
+
+struct RoundedIndexView: View {
+    var index: Int
+    
+    var body: some View {
+        Text("\(index)")
+            .font(.title3)
+            .kerning(-0.2)
+            .fontWeight(.bold)
+            .foregroundColor(Color("TextColor"))
+            .frame(width: Constants.Leaderboard.roundedIndexViewSize, height: Constants.Leaderboard.roundedIndexViewSize)
+            .overlay (
+                Circle()
+                    .strokeBorder(Color("LeaderboardRowBorderColor"), lineWidth: Constants.General.strokeWidth)
             )
     }
 }
@@ -60,6 +77,9 @@ struct RoundViews_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
         RoundedTextViewStroked(content: "999")
         RoundedTextViewStroked(content: "999")
+            .preferredColorScheme(.dark)
+        RoundedIndexView(index: 2)
+        RoundedIndexView(index: 2)
             .preferredColorScheme(.dark)
     }
 }
